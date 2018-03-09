@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { addReminder } from '../actions';
+import { addReminder } from '../actions'; // this is passed in to props
 
 class App extends Component {
   constructor (props) {
@@ -12,7 +11,7 @@ class App extends Component {
   }
 
   addReminder () {
-    console.log(this);
+    this.props.addReminder(this.state.text);
   }
 
   render () {
@@ -42,8 +41,4 @@ class App extends Component {
   }
 }
 
-function mapDispatchToProps(dispatch) { // bind action
-  return bindActionCreators({addReminder}, dispatch);
-}
-
-export default connect(null, mapDispatchToProps)(App); // connect mapDispatchToProps to App
+export default connect(null, { addReminder })(App); // connect addReminder action to App which dispatches to reducer when there's a change
