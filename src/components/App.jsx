@@ -15,6 +15,7 @@ class App extends Component {
   }
 
   render () {
+    console.log('this.props', this.props);
     return (
       <div className="App">
         <div className="title">
@@ -41,4 +42,10 @@ class App extends Component {
   }
 }
 
-export default connect(null, { addReminder })(App); // connect addReminder action to App which dispatches to reducer when there's a change
+function mapStateToProps(state) {
+  return {
+    reminders: state
+  }; // must return an object
+}
+
+export default connect(mapStateToProps, { addReminder })(App); // 2nd arg connect addReminder action to App which dispatches to reducer when there's a change
