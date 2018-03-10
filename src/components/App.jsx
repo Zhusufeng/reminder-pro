@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addReminder } from '../actions'; // this is passed in to props
+import { addReminder, deleteReminder } from '../actions'; // this is passed in to props
 
 class App extends Component {
   constructor (props) {
@@ -14,6 +14,11 @@ class App extends Component {
     this.props.addReminder(this.state.text);
   }
 
+  deleteReminder (id) {
+    console.log('deleting in application', id);
+    console.log('this.props', this.props); // checks that deleteReminder is included in props
+  }
+
   renderReminders () {
     const {reminders} = this.props;
     
@@ -24,7 +29,10 @@ class App extends Component {
             return (
               <li key={reminder.id} className="list-group-item">
                 <div className="list-item">{reminder.text}</div>
-                <div className="list-item delete-button">
+                <div 
+                  className="list-item delete-button"
+                  onClick={() => { this.deleteReminder(reminder.id)}}
+                >
                   &#x2715;
                 </div>
               </li>
@@ -70,4 +78,4 @@ function mapStateToProps(state) {
   }; // must return an object
 }
 
-export default connect(mapStateToProps, { addReminder })(App); // 2nd arg connect addReminder action to App which dispatches to reducer when there's a change
+export default connect(mapStateToProps, { addReminder, deleteReminder })(App); // 2nd arg connect addReminder action to App which dispatches to reducer when there's a change
