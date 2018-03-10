@@ -17,6 +17,7 @@ class App extends Component {
   deleteReminder (id) {
     console.log('deleting in application', id);
     console.log('this.props', this.props); // checks that deleteReminder is included in props
+    this.props.deleteReminder(id);
   }
 
   renderReminders () {
