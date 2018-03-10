@@ -1,12 +1,20 @@
-import { ADD_REMINDER } from '../constants';
+import { ADD_REMINDER, DELETE_REMINDER } from '../constants';
 
-// helper func for reminder func
+// helper func for adding reminder
 const reminder = (action) => {
   return {
     text: action.text,
     id: Math.random()
   }
 };
+
+// helper func for deleting reminder
+const removeById = (state = [], id) => {
+  // return all reminders that aren't deleted
+  const reminders = state.filter(reminder => reminder.id !== id);
+  console.log('new reduced reminders', reminders);
+  return reminders;
+}
 
 // reducer
 const reminders = (state = [], action) => {
@@ -15,6 +23,9 @@ const reminders = (state = [], action) => {
     case ADD_REMINDER:
       reminders = [...state, reminder(action)]; // spread old state into new array & add another element
       console.log('reminders as state', reminders);
+      return reminders;
+    case DELETE_REMINDER:
+      reminders = removeById(state, action.id);
       return reminders;
     default:
       return state;
