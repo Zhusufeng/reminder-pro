@@ -14,6 +14,13 @@ class App extends Component {
 
   addReminder () {
     console.log('this.state.dueDate', this.state.dueDate);
+    // if dueDate is older than today's date, alert & return
+    const formattedDueDate = new Date(this.state.dueDate);
+    const dateNow = new Date();
+    if (formattedDueDate < dateNow) {
+      alert('Your due date is older than today! Please re-enter');
+      return;
+    }
     this.props.addReminder(this.state.text, this.state.dueDate);
   }
 
