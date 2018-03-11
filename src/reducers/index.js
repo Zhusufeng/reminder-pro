@@ -2,9 +2,11 @@ import { ADD_REMINDER, DELETE_REMINDER } from '../constants';
 
 // helper func for adding reminder
 const reminder = (action) => {
+  let { text, dueDate } = action;
   return {
-    text: action.text,
-    id: Math.random()
+    id: Math.random(),
+    text,
+    dueDate
   }
 };
 
