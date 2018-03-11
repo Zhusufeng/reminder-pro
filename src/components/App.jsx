@@ -6,7 +6,8 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      text: ''
+      text: '',
+      dueDate: ''
     }
   }
 
@@ -51,11 +52,16 @@ class App extends Component {
           Reminder Pro
         </div>
         <div className="form-inline reminder-form">
-          <div className="form-group">
+          <div className="form-group">            
             <input 
               className="form-control"
               placeholder="I have to..."
               onChange={(e) => this.setState({text: e.target.value})}
+            />
+            <input
+              className="form-control"
+              type="datetime-local" 
+              onChange={(e) => this.setState({dueDate: e.target.value})}
             />
           </div>
           
