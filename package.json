@@ -1,6 +1,8 @@
 {
   "name": "reminder-pro",
   "version": "0.1.0",
+  "description": "Save reminders for yourself using cookies, React & Redux via Udemy course. See README.",
+  "author": "Lisa Gee",
   "private": true,
   "dependencies": {
     "moment": "^2.21.0",
